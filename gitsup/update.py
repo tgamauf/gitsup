@@ -9,7 +9,7 @@ from .config import Config, Module, get_config
 GITHUB_ENDPOINT = "https://api.github.com"
 URL_TEMPLATE = GITHUB_ENDPOINT + "/repos/{owner}/{repository}/{url}"
 UPDATE_SUBMODULE_TEMPLATE = (
-    "* Update submodule '{name}' HEAD of branch '{branch}':\n\t{oid}"
+    "* Update submodule '{name}' to HEAD of branch '{branch}':\n\t{oid}"
 )
 UPDATE_MESSAGE_TEMPLATE = (
     "Update submodules in '{branch}' to latest commits\n\n{submodule_messages}"
