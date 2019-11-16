@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tgamauf/gitsup.svg?branch=master)](https://travis-ci.org/tgamauf/gitsup)
+
 # gitsup
 Gitsup allows automatic update of the [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of a project to the latest commit. The intended purpose is to
 deploy the tool so execution can be triggered automatically by a [Github webhook](https://developer.github.com/webhooks/) 
