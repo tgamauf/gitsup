@@ -106,26 +106,35 @@ class TestConfig(unittest.TestCase):
         cls.full.update(cls.token)
 
     def test_get_config_from_environment(self):
-        # No config
+        # No config provided in the environment
         self._clear_environment()
         token, tree = config._get_config_from_environment()
         self.assertIsNone(token)
         self.assertIsNone(tree)
 
-        # Token only
+        # Token only provided by environment
         self._set_environment(self.token)
         token, tree = config._get_config_from_environment()
         self.assertEqual(token, "token")
         self.assertIsNone(tree)
 
-        # Tree only
+        # Tree only provided by environment
         self._set_environment(self.tree)
         token, tree = config._get_config_from_environment()
         self.assertIsNone(token)
         self._assert_tree_valid(tree, self.check_tree)
 
-        # Token and tree
+        # Token and tree provided by environment
         self._set_environment(self.full)
+        token, tree = config._get_config_from_environment()
+        self.assertIsNotNone(token)
+        self.assertIsNotNone(tree)
+
+        # Token and tree provided by environment, with default parent
+        #  branch
+        config_dict = self.full.copy()
+        del config_dict["branch"]
+        self._set_environment(config_dict)
         token, tree = config._get_config_from_environment()
         self.assertIsNotNone(token)
         self.assertIsNotNone(tree)

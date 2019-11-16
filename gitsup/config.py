@@ -136,7 +136,10 @@ def _get_config_from_environment() -> Tuple[Optional[str], Optional[Tree]]:
     try:
         owner = os.environ["GITSUP_OWNER"]
         repository = os.environ["GITSUP_REPOSITORY"]
-        branch = os.environ["GITSUP_BRANCH"]
+        try:
+            branch = os.environ["GITSUP_BRANCH"]
+        except KeyError:
+            branch = __DEFAULT_BRANCH
         module = Module(owner=owner, repository=repository, branch=branch)
 
         # Get the submodules from the environment. The format of the
