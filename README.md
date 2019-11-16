@@ -14,10 +14,11 @@ This code is adapted from this [stackoverflow post](https://stackoverflow.com/a/
 submodules [tgamauf/gitsup-demo-submodule](https://github.com/tgamauf/gitsup-demo-submodule) and [jezen/is-thirteen](
 https://github.com/jezen/is-thirteen) (replace the owner of the first two with your own username)
 - Set the following environment variables
-    - `GITSUPT_TOKEN=<Github personal access token>`
-    - `GITSUPT_OWNER=tgamauf`
-    - `GITSUPT_REPOSITORY=gitsup-demo`
-    - `GITSUPT_SUBMODULE_gitsup-demo-submodule_OWNER=tgamauf`
+    - `export GITSUP_TOKEN=<Github personal access token>`
+    - `export GITSUP_OWNER=tgamauf`
+    - `export GITSUP_REPOSITORY=gitsup-demo`
+    - `export GITSUP_SUBMODULES=gitsup-demo-submodule`
+    - `export GITSUP_SUBMODULE_gitsup-demo-submodule_OWNER=tgamauf`
 - Update `README.md` in `tgamauf/gitsup-demo-submodule`
 - Execute `gitsup`
 
@@ -49,15 +50,16 @@ value is supplied. The following configuration options exist per submodule:
 - path: the path of the submodule in the parent repository (optional; default: repository name)
 
 #### Environment Variables
-- `GITSUPT_TOKEN=<Github personal access token>`
-- `GITSUPT_OWNER=<parent repository owner>`
-- `GITSUPT_REPOSITORY=<parent repository name>`
-- `GITSUPT_BRANCH`=<parent repository branch>`
+- `GITSUP_TOKEN=<Github personal access token>`
+- `GITSUP_OWNER=<parent repository owner>`
+- `GITSUP_REPOSITORY=<parent repository name>`
+- `GITSUP_BRANCH=<parent repository branch>`
+- `GITSUP_SUBMODULES=<comma separated list of submodules>`
 
-The following environment vairables can exist multiple times for different submodules:
-- `GITSUPT_SUBMODULE_<submodule>_OWNER=<submodule repository owner>`
-- `GITSUPT_SUBMODULE_<submodule>_BRANCH=<submodule repository branch>`
-- `GITSUPT_SUBMODULE_<submodule>_PATH=<submodule path in parent repository>`
+The following environment variables can exist multiple times for any of the submodules defined by `GITSUP_SUBMODULES`:
+- `GITSUP_SUBMODULE_<submodule>_OWNER=<submodule repository owner>`
+- `GITSUP_SUBMODULE_<submodule>_BRANCH=<submodule repository branch>`
+- `GITSUP_SUBMODULE_<submodule>_PATH=<submodule path in parent repository>`
 
 #### YAML Config File
 ```

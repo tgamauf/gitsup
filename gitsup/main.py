@@ -1,13 +1,11 @@
 import argparse
 import sys
 
-from . import __version__, Updater
+from . import __version__, update_git_submodules
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Git submodule autoupdater"
-    )
+    parser = argparse.ArgumentParser(description="Git submodule autoupdater")
     parser.add_argument(
         "-v",
         "--version",
@@ -18,8 +16,7 @@ def main():
     args = parser.parse_args()
 
     try:
-        updater = Updater(config_file_path=args.config)
-        updater()
+        update_git_submodules(args.config)
     except RuntimeError as e:
         print(f"Failed to update git project: {e}", file=sys.stderr)
         sys.exit(1)

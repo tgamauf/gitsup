@@ -1,3 +1,6 @@
-__version__ = "1.0.0"
+from .update import update_git_submodules
 
-from .updater import Updater
+from ._version import get_versions
+
+__version__ = get_versions()["version"]
+del get_versions
