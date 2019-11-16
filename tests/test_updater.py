@@ -189,7 +189,7 @@ class TestUpdate(unittest.TestCase):
             {
                 "message": (
                     "Update submodules in 'branch' to latest commits\n\n"
-                    "* Update submodule 'sub-1-repo' HEAD of branch "
+                    "* Update submodule 'sub-1-repo' to HEAD of branch "
                     "'sub-1-branch':\n\tnew-sub-1-oid"
                 ),
                 "tree": "tree-oid",
