@@ -1,3 +1,4 @@
+[![PyPI version](https://badge.fury.io/py/gitsup.svg)](https://badge.fury.io/py/gitsup)
 [![Build Status](https://travis-ci.org/tgamauf/gitsup.svg?branch=master)](https://travis-ci.org/tgamauf/gitsup)
 
 # gitsup
