@@ -8,5 +8,4 @@ install:
   - pip install -r requirements.txt
   - pip install .[dev]
 script:
-  - black --check .
-  - pytest tests
+  - black --check . && pytest tests
