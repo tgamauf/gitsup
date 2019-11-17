@@ -4,7 +4,7 @@ import os
 import requests
 import requests_mock
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import gitsup.update as update
 
@@ -90,6 +90,31 @@ class TestUpdate(unittest.TestCase):
         # Auth header
         self.assertIn("Authorization", headers.keys())
         self.assertEqual(headers["Authorization"], f"token {self.token}")
+
+    def test_update_changed_parameter(self):
+        # Test if the config file is handed over to config.
+        # We interrupt the test when the get_config mock is called, as
+        #  we aren't interested in running the rest
+        with patch("gitsup.update.get_config") as mock_config:
+            mock_config.side_effect = RuntimeError("interrupd")
+            with self.assertRaises(RuntimeError):
+                update.update_git_submodules(config_file_path="config-file-path")
+            mock_config.assert_called_once_with(
+                config_file_path="config-file-path",
+                token=None
+            )
+
+        # Test if the token is handed over to config.
+        # We interrupt the test when the get_config mock is called, as
+        #  we aren't interested in running the rest
+        with patch("gitsup.update.get_config") as mock_config:
+            mock_config.side_effect = RuntimeError("interrupd")
+            with self.assertRaises(RuntimeError):
+                update.update_git_submodules(token="token")
+            mock_config.assert_called_once_with(
+                config_file_path=None,
+                token="token"
+            )
 
     @requests_mock.mock()
     def test_update_changed_success(self, mock_requests):

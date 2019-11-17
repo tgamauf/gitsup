@@ -16,7 +16,9 @@ UPDATE_MESSAGE_TEMPLATE = (
 )
 
 
-def update_git_submodules(config_file_path: Optional[str] = None) -> None:
+def update_git_submodules(*,
+                          config_file_path: Optional[str] = None,
+                          token: Optional[str] = None) -> None:
     """
     Update git submodules of the configured repository to latest
     revision of the repositories underlying the configured submodules.
@@ -24,6 +26,7 @@ def update_git_submodules(config_file_path: Optional[str] = None) -> None:
     :param config_file_path: path to optional configuration file. If
         this path isn't provided, the config is retrieved from the
         environment
+    :param token: Github API token
     :raise ConnectionError: connection to API failed (probably
         temporary)
     :raise FileNotFoundError: provided config file doesn't exist
@@ -31,7 +34,7 @@ def update_git_submodules(config_file_path: Optional[str] = None) -> None:
     :raise RuntimeError: update failed
     """
 
-    config = get_config(config_file_path)
+    config = get_config(config_file_path=config_file_path, token=token)
 
     print(f"Created git submodule updater using config\nConfig: {config}")
     print(f"Updating '{config.tree.parent.spec}'")
