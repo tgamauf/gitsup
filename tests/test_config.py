@@ -150,7 +150,7 @@ class TestConfig(unittest.TestCase):
         check_env_config["submodules"][self.submodule_1] = {
             "owner": env_config["owner"],
             "branch": config._DEFAULT_BRANCH,
-            "path": self.submodule_1
+            "path": self.submodule_1,
         }
         self._set_environment(env_config)
         tree = config._get_tree_from_environment()
@@ -163,7 +163,7 @@ class TestConfig(unittest.TestCase):
         check_env_config["submodules"][self.submodule_1] = {
             "owner": env_config["owner"],
             "branch": config._DEFAULT_BRANCH,
-            "path": self.submodule_1
+            "path": self.submodule_1,
         }
         del check_env_config["submodules"][self.submodule_2]
         self._set_environment(env_config)
@@ -236,7 +236,7 @@ class TestConfig(unittest.TestCase):
         check_env_config["submodules"][self.submodule_1] = {
             "owner": env_config["owner"],
             "branch": config._DEFAULT_BRANCH,
-            "path": self.submodule_1
+            "path": self.submodule_1,
         }
         file_path = self._get_config_file(env_config, write_yaml=write_yaml)
         tree = config._get_tree_from_config_file(file_path)
@@ -250,7 +250,7 @@ class TestConfig(unittest.TestCase):
         check_env_config["submodules"][self.submodule_1] = {
             "owner": env_config["owner"],
             "branch": config._DEFAULT_BRANCH,
-            "path": self.submodule_1
+            "path": self.submodule_1,
         }
         del check_env_config["submodules"][self.submodule_2]
         file_path = self._get_config_file(env_config, write_yaml=write_yaml)
@@ -300,8 +300,7 @@ class TestConfig(unittest.TestCase):
         result = config.get_config(config_file_path=file_path, token=None)
         self.assertIsNotNone(result.token)
         self.assertEqual(result.tree.parent.owner, "env_owner")
-        self.assertEqual(result.tree.submodules[self.submodule_1].owner,
-                         "env_owner")
+        self.assertEqual(result.tree.submodules[self.submodule_1].owner, "env_owner")
 
         # Test no tree provided
         self._set_environment(self.token)
@@ -311,8 +310,7 @@ class TestConfig(unittest.TestCase):
 
         # Test file doesn't exist
         with self.assertRaises(FileNotFoundError) as cm:
-            config.get_config(config_file_path="missing_path/config.yaml",
-                              token=None)
+            config.get_config(config_file_path="missing_path/config.yaml", token=None)
         self.assertEqual(
             cm.exception.args[0],
             f"Config file 'missing_path/config.yaml' doesn't exist",

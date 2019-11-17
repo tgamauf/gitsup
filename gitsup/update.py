@@ -16,9 +16,9 @@ UPDATE_MESSAGE_TEMPLATE = (
 )
 
 
-def update_git_submodules(*,
-                          config_file_path: Optional[str] = None,
-                          token: Optional[str] = None) -> None:
+def update_git_submodules(
+    *, config_file_path: Optional[str] = None, token: Optional[str] = None
+) -> None:
     """
     Update git submodules of the configured repository to latest
     revision of the repositories underlying the configured submodules.

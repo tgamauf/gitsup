@@ -100,8 +100,7 @@ class TestUpdate(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 update.update_git_submodules(config_file_path="config-file-path")
             mock_config.assert_called_once_with(
-                config_file_path="config-file-path",
-                token=None
+                config_file_path="config-file-path", token=None
             )
 
         # Test if the token is handed over to config.
@@ -111,10 +110,7 @@ class TestUpdate(unittest.TestCase):
             mock_config.side_effect = RuntimeError("interrupd")
             with self.assertRaises(RuntimeError):
                 update.update_git_submodules(token="token")
-            mock_config.assert_called_once_with(
-                config_file_path=None,
-                token="token"
-            )
+            mock_config.assert_called_once_with(config_file_path=None, token="token")
 
     @requests_mock.mock()
     def test_update_changed_success(self, mock_requests):

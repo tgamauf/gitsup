@@ -78,9 +78,7 @@ class Config(NamedTuple):
         return f"tree ({self.tree})"
 
 
-def get_config(*,
-               config_file_path: Optional[str],
-               token: Optional[str]) -> Config:
+def get_config(*, config_file_path: Optional[str], token: Optional[str]) -> Config:
     """
     Get the configuration from either the environment or the provided
     config file.
@@ -106,9 +104,11 @@ def get_config(*,
 
     # Try to get the token from either the provided parameter, the
     #  environment or the config file
-    token = (token
-             or _get_token_from_environment()
-             or _get_token_from_config_file(config_file_path))
+    token = (
+        token
+        or _get_token_from_environment()
+        or _get_token_from_config_file(config_file_path)
+    )
 
     if not token:
         raise RuntimeError("No Github personal access token provided")
@@ -116,11 +116,11 @@ def get_config(*,
     try:
         # Get the repository tree config from either the environment or
         #  the config file
-        tree = (_get_tree_from_environment()
-                or _get_tree_from_config_file(config_file_path))
+        tree = _get_tree_from_environment() or _get_tree_from_config_file(
+            config_file_path
+        )
     except FileNotFoundError:
-        raise FileNotFoundError(f"Config file '{config_file_path}' doesn't "
-                                f"exist")
+        raise FileNotFoundError(f"Config file '{config_file_path}' doesn't " f"exist")
 
     if not tree:
         raise RuntimeError("No repository tree provided")
