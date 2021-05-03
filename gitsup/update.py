@@ -132,7 +132,7 @@ def _request(error: str, fn: Callable, **kwargs) -> Dict[str, Any]:
 
 
 def _get_headers(token: str) -> Dict[str, str]:
-    """ Create headers for API calls. """
+    """Create headers for API calls."""
 
     return {
         "Accept": "application/vnd.github.v3+json",

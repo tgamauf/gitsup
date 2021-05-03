@@ -129,7 +129,7 @@ def get_config(*, config_file_path: Optional[str], token: Optional[str]) -> Conf
 
 
 def _get_token_from_environment() -> Optional[str]:
-    """ Get the token from the environment. """
+    """Get the token from the environment."""
 
     try:
         token = os.environ["GITSUP_TOKEN"]
@@ -140,7 +140,7 @@ def _get_token_from_environment() -> Optional[str]:
 
 
 def _get_tree_from_environment() -> Optional[Tree]:
-    """ Get the repository tree configuration from the environment. """
+    """Get the repository tree configuration from the environment."""
 
     try:
         owner = os.environ["GITSUP_OWNER"]
@@ -219,7 +219,7 @@ def _create_submodule(name: str, default_owner: str, config: Dict[str, str]) -> 
 
 
 def _get_token_from_config_file(config_file_path: Optional[str]) -> Optional[str]:
-    """ Get the token from the configuration file. """
+    """Get the token from the configuration file."""
 
     if not config_file_path:
         return None
@@ -236,7 +236,7 @@ def _get_token_from_config_file(config_file_path: Optional[str]) -> Optional[str
 
 @lru_cache(maxsize=1)
 def _read_config(config_file_path: str) -> Dict[str, Any]:
-    """ Cached loading and decoding of the config file. """
+    """Cached loading and decoding of the config file."""
 
     with open(config_file_path) as file:
         data = yaml.load(file, Loader=yaml.SafeLoader)
