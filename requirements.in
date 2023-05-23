@@ -1,4 +1,4 @@
 certifi==2022.12.07
 PyYAML~=6.0
-requests~=2.28
+requests~=2.31
 urllib3>=1.26,<1.27
